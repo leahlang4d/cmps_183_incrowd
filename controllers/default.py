@@ -5,19 +5,18 @@
 
 import re, datetime, calendar
 
-year = ['January',
-        'February'
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December']
-
+year = ['January', 
+		'February', 
+		'March', 
+		'April', 
+		'May', 
+		'June', 
+		'July', 
+		'August', 
+		'September', 
+		'October', 
+		'November', 
+		'December']
 
 def index():
     # Sets today equal to  year-month-date, then separates the three values
@@ -25,8 +24,8 @@ def index():
 
     current = re.split('-', str(today))
     todayNo = int(current[1])
-    todayMonth = year[todayNo - 2]
-    todayDay = int(re.sub('\A0', '', current[2]))  # Date time returns 2 digit number, but we want 1 digit for 1-9
+    todayMonth = year[todayNo - 1]
+    todayDay = int(re.sub('\A0', '', current[2]))   # Date time returns 2 digit number, but we want 1 digit for 1-9
     todayYear = int(current[0])
     month = calendar.monthcalendar(todayYear, todayNo)
     nWeeks = len(month)

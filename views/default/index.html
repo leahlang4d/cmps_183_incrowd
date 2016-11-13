@@ -46,7 +46,7 @@
 
                 <tr>
                 {{for x in xrange(0,7):}}
-                        {{day=week[x]}}
+                        {{day=week[x-1]}}
                         {{if x==5 or x==6:}}
                             {{classtype = 'weekend'}}
                         {{else:}}
