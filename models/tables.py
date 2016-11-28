@@ -15,4 +15,7 @@ db.define_table('dateContent',
                 Field('dateYear', 'integer'),
                 )
 
+db.dateContent.dateDay.writable = False
+db.dateContent.dateMonth.writable = False
+db.dateContent.dateYear.writable = False
 

@@ -60,13 +60,23 @@
                         {{elif day == todayDay:}}
                              <td class="classtype">
                                  <strong>{{=day}}</strong>
+                                 {{for cont in dateContent:}}
+                                    {{if cont.dateDay == day:}}
+                                        {{=cont.dateEvent}}
+                                    {{pass}}
+                                 {{pass}}
                                  <a href="{{=URL('default', 'add', args=[day])}}">
-                                    <i class="fa fa-pencil"></i> View and Edit Post
+                                    <i class="fa fa-pencil"></i> Add
                                  </a>
                                  <div class="classtype"></div>
                              </td>
                         {{else:}}
                             <td class="classtype">{{=day}}
+                                 {{for cont in dateContent:}}
+                                    {{if cont.dateDay == day:}}
+                                        {{=cont.dateEvent}}
+                                    {{pass}}
+                                 {{pass}}
                                 <div class="classtype"></div>
                                  <a href="{{=URL('default', 'add', args=[day])}}">
                                     <i class="fa fa-pencil"></i> Add

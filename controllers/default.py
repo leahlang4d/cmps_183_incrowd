@@ -34,13 +34,22 @@ def index():
     week = None
     day = None
 
-    return dict(todayMonth=todayMonth, todayYear=todayYear, todayDay=todayDay, nWeeks=nWeeks, month=month)
+    # Loads in calender content from the database
+    dateContent = db(db.dateContent).select()
+    return dict(todayMonth=todayMonth, todayYear=todayYear, todayDay=todayDay, nWeeks=nWeeks, month=month,
+                dateContent=dateContent)
 
 
 @auth.requires_login()
 def add():
     # This implements the ability to add events to calender dates
+    date = request.args(0)
+    db.dateContent.dateDay.default = date
     form = SQLFORM(db.dateContent)
+
+    if form.process().accepted:
+        session.flash = T('Event Created!')
+        redirect(URL('default', 'index'))
     return dict(form=form)
 
 
