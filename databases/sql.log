@@ -53,3 +53,12 @@ CREATE TABLE auth_cas(
     renew CHAR(1)
 );
 success!
+timestamp: 2016-11-28T03:43:46.090644
+CREATE TABLE dateContent(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    dateEvent TEXT,
+    dateDay INTEGER,
+    dateMonth INTEGER,
+    dateYear INTEGER
+);
+success!
