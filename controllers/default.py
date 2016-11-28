@@ -33,9 +33,15 @@ def index():
 
     week = None
     day = None
-    
 
     return dict(todayMonth=todayMonth, todayYear=todayYear, todayDay=todayDay, nWeeks=nWeeks, month=month)
+
+
+@auth.requires_login()
+def add():
+    # This implements the ability to add events to calender dates
+    form = SQLFORM(db.dateContent)
+    return dict(form=form)
 
 
 def user():

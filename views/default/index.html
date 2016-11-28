@@ -1,5 +1,6 @@
 {{extend 'layout.html'}}
 
+ <!-- Styling and implementation to draw calender -->
  <style type="text/css" >
          html, body { margin: 0; padding: 0 }
          body { background-color: #66003e; }
@@ -57,9 +58,20 @@
                             {{classtype = 'previous'}}
                             <td class="classtype"></td>
                         {{elif day == todayDay:}}
-                             <td class="classtype"><strong>{{=day}}</strong></span> <div class="classtype"></div></td>
+                             <td class="classtype">
+                                 <strong>{{=day}}</strong>
+                                 <a href="{{=URL('default', 'add', args=[day])}}">
+                                    <i class="fa fa-pencil"></i> View and Edit Post
+                                 </a>
+                                 <div class="classtype"></div>
+                             </td>
                         {{else:}}
-                            <td class="classtype">{{=day}}</span> <div class="classtype"></div></td>
+                            <td class="classtype">{{=day}}
+                                <div class="classtype"></div>
+                                 <a href="{{=URL('default', 'add', args=[day])}}">
+                                    <i class="fa fa-pencil"></i> Add
+                                 </a>
+                            </td>
                         {{pass}}
 
                 {{pass}}
@@ -67,4 +79,5 @@
             </tr>
         </tbody>
  </table>
+ <!-- End of Styling and implementation to draw calender -->
 

@@ -8,12 +8,11 @@
 # Consult manual for more options, validators, etc.
 
 
-
-#db.define_table('dateContent',
- #               """ Field('dateEvent', 'text'),"""
-  #              Field('dateDay', 'int' ),
-   #             Field('dateMonth', 'int'),
-    #            Field('dateYear','int' ),
-        #           )
+db.define_table('dateContent',
+                Field('dateEvent', 'text'),
+                Field('dateDay', 'integer'),
+                Field('dateMonth', 'integer'),
+                Field('dateYear', 'integer'),
+                )
 
 
