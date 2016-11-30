@@ -1,70 +1,42 @@
 {{extend 'layout.html'}}
 
- <style type="text/css" >
-         html, body { margin: 0; padding: 0 }
-         body { background-color: #66003e; }
-         #container { margin: 3em auto 0 3em; padding-bottom: 3em; background-color: #fff; }
-         #month { border-collapse: collapse; margin-left: 2em; }
-         #month th, #month td { border: 1px solid #000; }
-         #month thead { background-color:#9c9; }
-         #month td { width: 7em; height: 7em; padding: .2em; vertical-align: top; overflow: auto; }
-         td .day { width: 7em; height: 6em; overflow:auto; margin-top: 0; }
-         #month tbody .weekend { background-color:#ded; }
-         #month tbody .next, #month tbody .previous { background-color:#ddd; }
-         .rtop { display:block; background: #660006; }
-         .rtop * { display: block; height: 1px; overflow: hidden; background:#fff; }
-         .r1{margin: 0 0 0 5px}
-         .r2{margin: 0 0 0 3px}
-         .r3{margin: 0 0 0 2px}
-         .r4{margin: 0 0 0 1px; height: 2px}
-         #container h1 { margin: 0 0 .5em .5em; font: 2em Arial, Helvetica, sans-serif; color: #633166; }
-         #month th { font: 1em bold Arial, Helvetica, sans-serif; }
-         p {margin-top: 0; }
- </style >
+<div class="post_listing center">
+{{if auth.user_id:}}
 
-<div id="container" >
-    <b class="rtop" ><b class="r1" ></b > <b class="r2" ></b ><b class="r3" ></b > <b class="r4" ></b ></b >
-</div>
+    <div class="post_list_header text-right">
+        <a href="{{=URL('default', 'edit_internship')}}" class="btn btn-warning">
+            <i class="fa fa-plus"></i> Add Internship
+        </a>
+    </div>
 
-{{=todayMonth}}
-{{=todayYear}}
-    <table id="month">
-        <thead>
-            <tr>
-                <th class="weekend"> Sunday </th >
-                <th > Monday </th >
-                <th > Tuesday </th >
-                <th > Wednesday </th >
-                <th > Thursday </th >
-                <th >Friday</th >
-                <th class="weekend" > Saturday </th >
-            </tr>
-        </thead>
-        <tbody>
-            {{for w in range(0,nWeeks):}}
-                    {{week=month[w]}}
+{{else:}}
 
-                <tr>
-                {{for x in xrange(0,7):}}
-                        {{day=week[x]}}
-                        {{if x==5 or x==6:}}
-                            {{classtype = 'weekend'}}
-                        {{else:}}
-                            {{classtype = 'day'}}
-                        {{pass}}
+    <div class="post_list_header text-right">
+        <a href="{{=URL('default', 'user', args=['login'])}}" class="btn btn-warning">Log In</a>
+    </div>
 
-                        {{if day == 0:}}
-                            {{classtype = 'previous'}}
-                            <td class="classtype"></td>
-                        {{elif day == todayDay:}}
-                             <td class="classtype"><strong>{{=day}}</strong></span> <div class="classtype"></div></td>
-                        {{else:}}
-                            <td class="classtype">{{=day}}</span> <div class="classtype"></div></td>
-                        {{pass}}
 
-                {{pass}}
+
+{{pass}}
+
+    <div class="post_list">
+    {{for p in posts:}}
+        <div class="post text-left">
+            <!-- Here goes the code to display an individual post. The code below is just a placeholder. -->
+            <p>{{=p.title}}</p>
+            <p>{{=p.organization}}</p>
+
+            <a href="{{=URL('default', 'view_internship', args=[p.id])}}" class = "post_title">
+                   <i class="fa fa-pencil-square-o" aria-hidden="true">View Internship</i>
+            </a>
+
+            {{if auth.user_id and p.uploader == auth.user.email:}}
+               <a href="{{=URL('default', 'edit_internship', args=[p.id])}}" class = "post_title">
+                   <i class="fa fa-pencil-square-o" aria-hidden="true">Edit Your Internship Info</i>
+               </a>
             {{pass}}
-            </tr>
-        </tbody>
- </table>
+        </div>
+    {{pass}}
+    </div>
 
+</div>
