@@ -8,6 +8,7 @@
 # - download is for downloading files uploaded in the db (does streaming)
 # -------------------------------------------------------------------------
 
+
 def get_user_name_from_email(email):
     """Returns a string corresponding to the user first and last names,
     given the user email."""
@@ -27,8 +28,9 @@ def index():
     # most recent first, and you need to return that list here.
     # Note that posts is NOT a list of strings in your actual code; it is
     # what you get from a db(...).select(...).
-    #posts = ['banana', 'pear', 'eggplant']
-    return dict(posts=db().select(orderby=~db.intern.upload), author = get_user_name_from_email)
+    # posts = ['banana', 'pear', 'eggplant']
+    return dict(posts=db().select(orderby=~db.intern.upload), author = get_user_name_from_email,
+                favs=db().select(orderby=~db.fav.upload))
 
 
 @auth.requires_login()
@@ -116,6 +118,12 @@ def view_internship():
 
     return dict(form=form, button_list=button_list, post=db(db.intern.id == request.args(0)).select().first())
 
+
+def add_fav():
+    id = request.args(0)
+    db.fav.insert(title=db.intern(id).title, organization=db.intern(id).organization)
+    response.flash = "Added to Favorites"
+    return True
 
 def user():
     """

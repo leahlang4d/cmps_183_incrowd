@@ -7,8 +7,14 @@
 /* line 7, ../sass/_main.scss */
 .post_list {
   padding-top: 10px;
+  float: left;
 }
 
+
+.fav_list {
+  padding-top: 10px;
+  float: right;
+}
 /* line 11, ../sass/_main.scss */
 .post {
   border-color: #cccccc;
