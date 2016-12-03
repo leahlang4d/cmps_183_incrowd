@@ -1,0 +1,22 @@
+{{extend 'layout.html'}}
+<div class="post_listing">
+
+    <div class="button_list">
+    <H1>
+        {{for b in button_list:}}
+        <div class="top_button">{{=b}}</div>
+        {{pass}}
+    </H1>
+    </div>
+    <p>Title: {{=post.title}}</p>
+    <p>Organization: {{=post.organization}}</p>
+    <p>Description</p>
+    <p>{{=post.description}}</p>
+    <p>Requirements</p>
+    <p>{{=post.requirements}}</p>
+    <p>Application due by: {{=post.due_date}}</p>
+    <p>For more information please contact:  {{=post.uploader}}</p>
+    <p>Uploaded on: {{=post.upload}}</p>
+    <a href="{{=URL('default', 'user', args=['login'])}}" class="btn btn-primary">Add To Working List</a>
+    <a href="{{=URL('default', 'user', args=['login'])}}" class="btn btn-warning"><i class="fa fa-star" aria-hidden="true"> Favorite</i></a>
+</div>
