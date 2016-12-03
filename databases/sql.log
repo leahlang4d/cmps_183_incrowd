@@ -1049,3 +1049,32 @@ success!
 success!
 success!
 success!
+success!
+success!
+success!
+timestamp: 2016-12-03T10:46:22.509447
+CREATE TABLE intern(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title CHAR(512),
+    organization CHAR(512),
+    description TEXT,
+    requirements TEXT,
+    due_date CHAR(512),
+    upload TIMESTAMP,
+    uploader CHAR(512)
+);
+success!
+success!
+success!
+timestamp: 2016-12-03T10:46:40.428716
+CREATE TABLE fav(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title CHAR(512),
+    organization CHAR(512),
+    description TEXT,
+    requirements TEXT,
+    due_date CHAR(512),
+    upload TIMESTAMP,
+    uploader CHAR(512)
+);
+success!
