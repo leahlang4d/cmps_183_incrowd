@@ -5,7 +5,7 @@
 # Customize your APP title, subtitle and menus here
 # ----------------------------------------------------------------------------------------------------------------------
 
-response.logo = A(B('inCrowd'), XML('&trade;&nbsp;'),
+response.logo = A(B('inCrowd'), XML('&nbsp;'),
                   _class="navbar-brand", _href="http://www.web2py.com/",
                   _id="web2py-logo")
 response.title = request.application.replace('_', ' ').title()
