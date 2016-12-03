@@ -36,7 +36,19 @@ def get_user_name_from_email(email):
 
 
 def index():
-
+     """
+     This is your main controller.
+     """
+    # I am creating a bogus list here, just to have some divs appear in the
+    # view.  You need to read at most 20 posts from the database, in order of
+    # most recent first, and you need to return that list here.
+    # Note that posts is NOT a list of strings in your actual code; it is
+    # what you get from a db(...).select(...).
+    # posts = ['banana', 'pear', 'eggplant']
+     return dict(posts=db().select(orderby=~db.intern.upload), author = get_user_name_from_email,
+                favs=db().select(orderby=~db.fav.upload))
+@auth.requires_login()
+def calender():
     # Sets today equal to  year-month-date, then separates the three values
     today = datetime.datetime.date(datetime.datetime.now())
 
@@ -54,8 +66,7 @@ def index():
     # Loads in calender content from the database
     dateContent = db(db.dateContent).select()
     return dict(todayMonth=todayMonth, todayYear=todayYear, todayDay=todayDay, nWeeks=nWeeks, month=month,
-                dateContent=dateContent, posts=db().select(orderby=~db.intern.upload), author = get_user_name_from_email,
-                favs=db().select(orderby=~db.fav.upload))
+                dateContent=dateContent)
 
 
 @auth.requires_login()
@@ -69,20 +80,6 @@ def add():
         session.flash = T('Event Created!')
         redirect(URL('default', 'index'))
     return dict(form=form)
-
-    #"""
-   # This is your main controller.
-   # """
-    # I am creating a bogus list here, just to have some divs appear in the
-    # view.  You need to read at most 20 posts from the database, in order of
-    # most recent first, and you need to return that list here.
-    # Note that posts is NOT a list of strings in your actual code; it is
-    # what you get from a db(...).select(...).
-    # posts = ['banana', 'pear', 'eggplant']
-
-   #------------------merge conflict--------------------------#
-   # return dict(posts=db().select(orderby=~db.intern.upload), author = get_user_name_from_email,
-         #       favs=db().select(orderby=~db.fav.upload))
 
 
 @auth.requires_login()
@@ -178,6 +175,7 @@ def add_fav():
     response.flash = "Added to Favorites"
     return True
 
+
 def user():
     """
     exposes:
@@ -214,3 +212,5 @@ def call():
     supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv
     """
     return service()
+
+
