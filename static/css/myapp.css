@@ -49,3 +49,7 @@ a.post_title div.post_title {
   border-radius: 16px;
 }
 
+a.calender_click{
+    display: inline-block
+}
+
