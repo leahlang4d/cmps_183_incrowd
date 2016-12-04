@@ -1,0 +1,800 @@
+(dp1
+S'output'
+p2
+S"<class 'sqlite3.OperationalError'> no such table: web2py_session_cmps_183_incrowd"
+p3
+sS'layer'
+p4
+S'/mnt/c/Users/Andy Espejo/Documents/School/CS183/web2py/applications/cmps_183_incrowd/models/db.py'
+p5
+sS'code'
+p6
+S'# -*- coding: utf-8 -*-\n\n# This scaffolding model makes your app work on Google App Engine too\n# File is released under public domain and you can use without limitations\n\nif request.global_settings.web2py_version < "2.14.1":\n    raise HTTP(500, "Requires web2py 2.13.3 or newer")\n\n# if SSL/HTTPS is properly configured and you want all HTTP requests to\n# be redirected to HTTPS, uncomment the line below:\n# request.requires_https()\n\n# app configuration made easy. Look inside private/appconfig.ini\nfrom gluon.contrib.appconfig import AppConfig\n\n# once in production, remove reload=True to gain full speed\nmyconf = AppConfig(reload=True)\n\nif not request.env.web2py_runtime_gae:\n    # if NOT running on Google App Engine use SQLite or other DB\n    db = DAL(myconf.get(\'db.uri\'),\n             pool_size=myconf.get(\'db.pool_size\'),\n             migrate_enabled=myconf.get(\'db.migrate\'),\n             check_reserved=[\'all\'])\n    # I like to keep the session in the db.\n    session.connect(request, response, db=db)\nelse:\n    # connect to Google BigTable (optional \'google:datastore://namespace\')\n    db = DAL(\'google:datastore+ndb\')\n    # store sessions and tickets there\n    session.connect(request, response, db=db)\n    #\n    # or store session in Memcache, Redis, etc.\n    # from gluon.contrib.memdb import MEMDB\n    # from google.appengine.api.memcache import Client\n    # session.connect(request, response, db = MEMDB(Client()))\n\n# by default give a view/generic.extension to all actions from localhost\n# none otherwise. a pattern can be \'controller/function.extension\'\nresponse.generic_patterns = [\'*\'] if request.is_local else []\n\n# choose a style for forms\nresponse.formstyle = myconf.get(\'forms.formstyle\')  # or \'bootstrap3_stacked\' or \'bootstrap2\' or other\nresponse.form_label_separator = myconf.get(\'forms.separator\') or \'\'\n\n# (optional) optimize handling of static files\n# response.optimize_css = \'concat,minify,inline\'\n# response.optimize_js = \'concat,minify,inline\'\n\n# (optional) static assets folder versioning\n# response.static_version = \'0.0.0\'\n\n# Here is sample code if you need for\n# - email capabilities\n# - authentication (registration, login, logout, ... )\n# - authorization (role based authorization)\n# - services (xml, csv, json, xmlrpc, jsonrpc, amf, rss)\n# - old style crud actions\n# (more options discussed in gluon/tools.py)\n\nfrom gluon.tools import Auth, Service, PluginManager\n\n# host names must be a list of allowed host names (glob syntax allowed)\nauth = Auth(db, host_names=myconf.get(\'host.names\'))\nservice = Service()\nplugins = PluginManager()\n\n# create all tables needed by auth if not custom tables\nauth.define_tables(username=False, signature=False)\n\n# configure email\nmail = auth.settings.mailer\nmail.settings.server = \'logging\' if request.is_local else myconf.get(\'smtp.server\')\nmail.settings.sender = myconf.get(\'smtp.sender\')\nmail.settings.login = myconf.get(\'smtp.login\')\nmail.settings.tls = myconf.get(\'smtp.tls\') or False\nmail.settings.ssl = myconf.get(\'smtp.ssl\') or False\n\n# configure auth policy\nauth.settings.registration_requires_verification = False\nauth.settings.registration_requires_approval = False\nauth.settings.reset_password_requires_verification = True\n\n# More API examples for controllers:\n#\n# >>> db.mytable.insert(myfield=\'value\')\n# >>> rows = db(db.mytable.myfield == \'value\').select(db.mytable.ALL)\n# >>> for row in rows: print row.id, row.myfield\n\n######################\n# Logging\nimport logging, sys\nFORMAT = "%(asctime)s %(levelname)s %(process)s %(thread)s %(funcName)s():%(lineno)d %(message)s"\nlogging.basicConfig(stream=sys.stderr)\nlogger = logging.getLogger(request.application)\nlogger.setLevel(logging.INFO)\n\n# Let\'s log the request.\nlogger.info("====> Request: %r %r %r %r" % (request.env.request_method, request.env.path_info, request.args, request.vars))\n'
+p7
+sS'snapshot'
+p8
+(dp9
+S'exception'
+p10
+(dp11
+S'__module__'
+p12
+S"'sqlite3'"
+p13
+sS'__getslice__'
+p14
+S"<method-wrapper '__getslice__' of OperationalError object>"
+p15
+sS'__str__'
+p16
+S"<method-wrapper '__str__' of OperationalError object>"
+p17
+sS'__reduce__'
+p18
+S'<built-in method __reduce__ of OperationalError object>'
+p19
+sS'__dict__'
+p20
+S'{}'
+p21
+sS'__sizeof__'
+p22
+S'<built-in method __sizeof__ of OperationalError object>'
+p23
+sS'__weakref__'
+p24
+S'None'
+p25
+sS'__init__'
+p26
+S"<method-wrapper '__init__' of OperationalError object>"
+p27
+sS'__setattr__'
+p28
+S"<method-wrapper '__setattr__' of OperationalError object>"
+p29
+sS'__reduce_ex__'
+p30
+S'<built-in method __reduce_ex__ of OperationalError object>'
+p31
+sS'__new__'
+p32
+S'<built-in method __new__ of type object>'
+p33
+sS'__format__'
+p34
+S'<built-in method __format__ of OperationalError object>'
+p35
+sS'__class__'
+p36
+S"<class 'sqlite3.OperationalError'>"
+p37
+sS'__doc__'
+p38
+S'None'
+p39
+sS'__getitem__'
+p40
+S"<method-wrapper '__getitem__' of OperationalError object>"
+p41
+sS'__setstate__'
+p42
+S'<built-in method __setstate__ of OperationalError object>'
+p43
+sS'__getattribute__'
+p44
+S"<method-wrapper '__getattribute__' of OperationalError object>"
+p45
+sS'args'
+p46
+S"('no such table: web2py_session_cmps_183_incrowd',)"
+p47
+sS'__subclasshook__'
+p48
+S'<built-in method __subclasshook__ of type object>'
+p49
+sS'__unicode__'
+p50
+S'<built-in method __unicode__ of OperationalError object>'
+p51
+sS'__delattr__'
+p52
+S"<method-wrapper '__delattr__' of OperationalError object>"
+p53
+sS'__repr__'
+p54
+S"<method-wrapper '__repr__' of OperationalError object>"
+p55
+sS'__hash__'
+p56
+S"<method-wrapper '__hash__' of OperationalError object>"
+p57
+ssS'evalue'
+p58
+S'no such table: web2py_session_cmps_183_incrowd'
+p59
+sS'request'
+p60
+cgluon.html
+XML_unpickle
+p61
+(S'sIY\x00\x00<div><table><tr><td style="font-weight:bold;vertical-align:top;">ajax</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">application</td><td style="vertical-align:top;">:</td><td><div>cmps_183_incrowd</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">args</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cid</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">client</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">controller</td><td style="vertical-align:top;">:</td><td><div>default</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cookies</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">session_id_admin</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1-cb53a529-860b-4cc6-8861-99d272167572<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id_cmps_183_incrowd</td><td style="vertical-align:top;">:</td><td><div>4:e8d445af-0000-468d-99ea-eed6764b6d23<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id_welcome</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1-9fc8bd96-c37d-4116-b582-6f789b187bef<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">env</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT</td><td style="vertical-align:top;">:</td><td><div>text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT_ENCODING</td><td style="vertical-align:top;">:</td><td><div>gzip, deflate, sdch, br</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT_LANGUAGE</td><td style="vertical-align:top;">:</td><td><div>en-US,en;q=0.8</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_CONNECTION</td><td style="vertical-align:top;">:</td><td><div>keep-alive</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_COOKIE</td><td style="vertical-align:top;">:</td><td><div>session_id_welcome=127.0.0.1-9fc8bd96-c37d-4116-b582-6f789b187bef; session_id_cmps_183_incrowd=&quot;4:e8d445af-0000-468d-99ea-eed6764b6d23&quot;; session_id_admin=127.0.0.1-cb53a529-860b-4cc6-8861-99d272167572</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_HOST</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1:8000</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_UPGRADE_INSECURE_REQUESTS</td><td style="vertical-align:top;">:</td><td><div>1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_USER_AGENT</td><td style="vertical-align:top;">:</td><td><div>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">PATH_INFO</td><td style="vertical-align:top;">:</td><td><div>/cmps_183_incrowd/</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">QUERY_STRING</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REMOTE_ADDR</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REMOTE_PORT</td><td style="vertical-align:top;">:</td><td><div>63704</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REQUEST_METHOD</td><td style="vertical-align:top;">:</td><td><div>GET</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SCRIPT_NAME</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_NAME</td><td style="vertical-align:top;">:</td><td><div>DESKTOP-M7ECIUG</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_PORT</td><td style="vertical-align:top;">:</td><td><div>8000</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_PROTOCOL</td><td style="vertical-align:top;">:</td><td><div>HTTP/1.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_SOFTWARE</td><td style="vertical-align:top;">:</td><td><div>Rocket 1.2.6</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">app_folders</td><td style="vertical-align:top;">:</td><td><div>set([&#x27;/mnt/c/Users/Andy Espejo/Documents/School/CS183/web2py/applications/cmps_183_incrowd/&#x27;])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">applications_parent</td><td style="vertical-align:top;">:</td><td><div>/mnt/c/Users/Andy Espejo/Documents/School/CS183/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cmd_args</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cmd_options</td><td style="vertical-align:top;">:</td><td><div>&lt;Values at 0x7f421d9883b0: {&#x27;verbose&#x27;: False, &#x27;ip&#x27;: &#x27;127.0.0.1&#x27;, &#x27;debuglevel&#x27;: 30, &#x27;with_scheduler&#x27;: False, &#x27;shutdown_timeout&#x27;: 5, &#x27;taskbar&#x27;: False, &#x27;with_coverage&#x27;: False, &#x27;pid_filename&#x27;: &#x27;httpserver.pid&#x27;, &#x27;maxthreads&#x27;: None, &#x27;softcron&#x27;: False, &#x27;server_name&#x27;: &#x27;DESKTOP-M7ECIUG&#x27;, &#x27;bpython&#x27;: False, &#x27;nogui&#x27;: False, &#x27;port&#x27;: 8000, &#x27;print_errors&#x27;: False, &#x27;extcron&#x27;: False, &#x27;runcron&#x27;: False, &#x27;run_system_tests&#x27;: False, &#x27;test&#x27;: None, &#x27;folder&#x27;: &#x27;/mnt/c/Users/Andy Espejo/Documents/School/CS183/web2py&#x27;, &#x27;config&#x27;: &#x27;&#x27;, &#x27;minthreads&#x27;: None, &#x27;shell&#x27;: None, &#x27;run&#x27;: &#x27;&#x27;, &#x27;log_filename&#x27;: &#x27;httpserver.log&#x27;, &#x27;profiler_dir&#x27;: None, &#x27;args&#x27;: [&#x27;&#x27;], &#x27;socket_timeout&#x27;: 5, &#x27;ssl_ca_certificate&#x27;: None, &#x27;scheduler&#x27;: None, &#x27;interfaces&#x27;: None, &#x27;ssl_private_key&#x27;: &#x27;&#x27;, &#x27;gae&#x27;: None, &#x27;password&#x27;: &#x27;******&#x27;, &#x27;request_queue_size&#x27;: 5, &#x27;ssl_certificate&#x27;: &#x27;&#x27;, &#x27;cronjob&#x27;: False, &#x27;numthreads&#x27;: None, &#x27;quiet&#x27;: False, &#x27;import_models&#x27;: False, &#x27;timeout&#x27;: 10, &#x27;plain&#x27;: False, &#x27;nobanner&#x27;: False}&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">db_sessions</td><td style="vertical-align:top;">:</td><td><div>set([&#x27;cmps_183_incrowd&#x27;])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">debugging</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">gluon_parent</td><td style="vertical-align:top;">:</td><td><div>/mnt/c/Users/Andy Espejo/Documents/School/CS183/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept</td><td style="vertical-align:top;">:</td><td><div>text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept_encoding</td><td style="vertical-align:top;">:</td><td><div>gzip, deflate, sdch, br</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept_language</td><td style="vertical-align:top;">:</td><td><div>en-US,en;q=0.8</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_connection</td><td style="vertical-align:top;">:</td><td><div>keep-alive</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_cookie</td><td style="vertical-align:top;">:</td><td><div>session_id_welcome=127.0.0.1-9fc8bd96-c37d-4116-b582-6f789b187bef; session_id_cmps_183_incrowd=&quot;4:e8d445af-0000-468d-99ea-eed6764b6d23&quot;; session_id_admin=127.0.0.1-cb53a529-860b-4cc6-8861-99d272167572</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_host</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1:8000</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_upgrade_insecure_requests</td><td style="vertical-align:top;">:</td><td><div>1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_user_agent</td><td style="vertical-align:top;">:</td><td><div>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_jython</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_pypy</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_source</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path_info</td><td style="vertical-align:top;">:</td><td><div>/cmps_183_incrowd/</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">query_string</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">remote_addr</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">remote_port</td><td style="vertical-align:top;">:</td><td><div>63704</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">request_method</td><td style="vertical-align:top;">:</td><td><div>GET</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">request_uri</td><td style="vertical-align:top;">:</td><td><div>/cmps_183_incrowd/</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">script_name</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_name</td><td style="vertical-align:top;">:</td><td><div>DESKTOP-M7ECIUG</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_port</td><td style="vertical-align:top;">:</td><td><div>8000</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_protocol</td><td style="vertical-align:top;">:</td><td><div>HTTP/1.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_software</td><td style="vertical-align:top;">:</td><td><div>Rocket 1.2.6</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_path</td><td style="vertical-align:top;">:</td><td><div>/mnt/c/Users/Andy Espejo/Documents/School/CS183/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_version</td><td style="vertical-align:top;">:</td><td><div>2.14.6-stable+timestamp.2016.05.10.00.21.47</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.errors</td><td style="vertical-align:top;">:</td><td><div>&lt;open file &#x27;&lt;stderr&gt;&#x27;, mode &#x27;w&#x27; at 0x7f4221ea21e0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.file_wrapper</td><td style="vertical-align:top;">:</td><td><div>&lt;class wsgiref.util.FileWrapper at 0x7f421d9af2c0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.input</td><td style="vertical-align:top;">:</td><td><div>&lt;socket._fileobject object at 0x7f421d298d50&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.multiprocess</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.multithread</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.run_once</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.url_scheme</td><td style="vertical-align:top;">:</td><td><div>http</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.version</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>1</div></td></tr><tr><td><div>0</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_errors</td><td style="vertical-align:top;">:</td><td><div>&lt;open file &#x27;&lt;stderr&gt;&#x27;, mode &#x27;w&#x27; at 0x7f4221ea21e0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_file_wrapper</td><td style="vertical-align:top;">:</td><td><div>&lt;class wsgiref.util.FileWrapper at 0x7f421d9af2c0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_input</td><td style="vertical-align:top;">:</td><td><div>&lt;socket._fileobject object at 0x7f421d298d50&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_multiprocess</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_multithread</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_run_once</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_url_scheme</td><td style="vertical-align:top;">:</td><td><div>http</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_version</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>1</div></td></tr><tr><td><div>0</div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">extension</td><td style="vertical-align:top;">:</td><td><div>html</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">folder</td><td style="vertical-align:top;">:</td><td><div>/mnt/c/Users/Andy Espejo/Documents/School/CS183/web2py/applications/cmps_183_incrowd/</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">function</td><td style="vertical-align:top;">:</td><td><div>index</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">global_settings</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">app_folders</td><td style="vertical-align:top;">:</td><td><div>set([&#x27;/mnt/c/Users/Andy Espejo/Documents/School/CS183/web2py/applications/cmps_183_incrowd/&#x27;])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">applications_parent</td><td style="vertical-align:top;">:</td><td><div>/mnt/c/Users/Andy Espejo/Documents/School/CS183/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cmd_args</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cmd_options</td><td style="vertical-align:top;">:</td><td><div>&lt;Values at 0x7f421d9883b0: {&#x27;verbose&#x27;: False, &#x27;ip&#x27;: &#x27;127.0.0.1&#x27;, &#x27;debuglevel&#x27;: 30, &#x27;with_scheduler&#x27;: False, &#x27;shutdown_timeout&#x27;: 5, &#x27;taskbar&#x27;: False, &#x27;with_coverage&#x27;: False, &#x27;pid_filename&#x27;: &#x27;httpserver.pid&#x27;, &#x27;maxthreads&#x27;: None, &#x27;softcron&#x27;: False, &#x27;server_name&#x27;: &#x27;DESKTOP-M7ECIUG&#x27;, &#x27;bpython&#x27;: False, &#x27;nogui&#x27;: False, &#x27;port&#x27;: 8000, &#x27;print_errors&#x27;: False, &#x27;extcron&#x27;: False, &#x27;runcron&#x27;: False, &#x27;run_system_tests&#x27;: False, &#x27;test&#x27;: None, &#x27;folder&#x27;: &#x27;/mnt/c/Users/Andy Espejo/Documents/School/CS183/web2py&#x27;, &#x27;config&#x27;: &#x27;&#x27;, &#x27;minthreads&#x27;: None, &#x27;shell&#x27;: None, &#x27;run&#x27;: &#x27;&#x27;, &#x27;log_filename&#x27;: &#x27;httpserver.log&#x27;, &#x27;profiler_dir&#x27;: None, &#x27;args&#x27;: [&#x27;&#x27;], &#x27;socket_timeout&#x27;: 5, &#x27;ssl_ca_certificate&#x27;: None, &#x27;scheduler&#x27;: None, &#x27;interfaces&#x27;: None, &#x27;ssl_private_key&#x27;: &#x27;&#x27;, &#x27;gae&#x27;: None, &#x27;password&#x27;: &#x27;******&#x27;, &#x27;request_queue_size&#x27;: 5, &#x27;ssl_certificate&#x27;: &#x27;&#x27;, &#x27;cronjob&#x27;: False, &#x27;numthreads&#x27;: None, &#x27;quiet&#x27;: False, &#x27;import_models&#x27;: False, &#x27;timeout&#x27;: 10, &#x27;plain&#x27;: False, &#x27;nobanner&#x27;: False}&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">db_sessions</td><td style="vertical-align:top;">:</td><td><div>set([&#x27;cmps_183_incrowd&#x27;])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">debugging</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">gluon_parent</td><td style="vertical-align:top;">:</td><td><div>/mnt/c/Users/Andy Espejo/Documents/School/CS183/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_jython</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_pypy</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_source</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">local_hosts</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>DESKTOP-M7ECIUG</div></td></tr><tr><td><div>::1</div></td></tr><tr><td><div>::ffff:127.0.0.1</div></td></tr><tr><td><div>127.0.0.1</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_version</td><td style="vertical-align:top;">:</td><td><div>2.14.6-stable+timestamp.2016.05.10.00.21.47</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_https</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_local</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_restful</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_scheduler</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_shell</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">now</td><td style="vertical-align:top;">:</td><td><div>datetime.datetime(2016, 12, 3, 23, 17, 59, 150512)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">raw_args</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">raw_extension</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">url</td><td style="vertical-align:top;">:</td><td><div>/cmps_183_incrowd/</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">utcnow</td><td style="vertical-align:top;">:</td><td><div>datetime.datetime(2016, 12, 4, 7, 17, 59, 151014)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi</td><td style="vertical-align:top;">:</td><td><div>&lt;gluon.main.LazyWSGI object at 0x7f421d2bcfd0&gt;</div></td></tr></table></div>'
+tRp62
+sS'frames'
+p63
+(lp64
+(dp65
+S'file'
+p66
+S'/mnt/c/Users/Andy Espejo/Documents/School/CS183/web2py/gluon/restricted.py'
+p67
+sS'dump'
+p68
+(dp69
+S'environment'
+p70
+S"{'A': <class 'gluon.html.A'>, 'ANY_OF': <class 'gluon.validators.ANY_OF'>, 'ASSIGNJS': <function ASSIGNJS>, 'AppConfig': <function AppConfig>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'BUTTON': <class 'gluon.html.BUTTON'>, 'CAT': <class 'gluon.html.CAT'>, ...}"
+p71
+sS'ccode'
+p72
+S'<code object <module> at 0x7f421c14d3b0, file "/...lications/cmps_183_incrowd/models/db.py", line 6>'
+p73
+ssS'lnum'
+p74
+I227
+sS'lines'
+p75
+(dp76
+I224
+S'            ccode = code'
+p77
+sI225
+S'        else:'
+p78
+sI226
+S'            ccode = compile2(code, layer)'
+p79
+sI227
+S'        exec ccode in environment'
+p80
+sI228
+S'    except HTTP:'
+p81
+sI229
+S'        raise'
+p82
+sI230
+S'    except RestrictedError:'
+p83
+sI231
+S'        # do not encapsulate (obfuscate) the original RestrictedError'
+p84
+sI222
+S'    try:'
+p85
+sI223
+S'        if isinstance(code, types.CodeType):'
+p86
+ssS'call'
+p87
+S"(code='# -*- coding: utf-8 -*-\\n\\n# This scaffolding mode...uest.env.path_info, request.args, request.vars))\\n', environment={'A': <class 'gluon.html.A'>, 'ANY_OF': <class 'gluon.validators.ANY_OF'>, 'ASSIGNJS': <function ASSIGNJS>, 'AppConfig': <function AppConfig>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'BUTTON': <class 'gluon.html.BUTTON'>, 'CAT': <class 'gluon.html.CAT'>, ...}, layer='/mnt/c/Users/Andy Espejo/Documents/School/CS183/web2py/applications/cmps_183_incrowd/models/db.py')"
+p88
+sS'func'
+p89
+S'restricted'
+p90
+sa(dp91
+g66
+S'/mnt/c/Users/Andy Espejo/Documents/School/CS183/web2py/applications/cmps_183_incrowd/models/db.py'
+p92
+sg68
+(dp93
+S'db'
+p94
+S'<DAL uri="sqlite://storage.sqlite">'
+p95
+sS'session.connect'
+p96
+S'<bound method Session.connect of <Storage {}>>'
+p97
+sS'session'
+p98
+S'<Storage {}>'
+p99
+sS'request'
+p100
+S"<Storage {'_vars': None, 'function': 'index', 'c...ol/CS183/web2py/applications/cmps_183_incrowd/'}>"
+p101
+sS'response'
+p102
+S"<Storage {'body': <cStringIO.StringO object at 0...y, session_data)>, 'view': 'default/index.html'}>"
+p103
+ssg74
+I26
+sg75
+(dp104
+I21
+S"    db = DAL(myconf.get('db.uri'),"
+p105
+sI22
+S"             pool_size=myconf.get('db.pool_size'),"
+p106
+sI23
+S"             migrate_enabled=myconf.get('db.migrate'),"
+p107
+sI24
+S"             check_reserved=['all'])"
+p108
+sI25
+S'    # I like to keep the session in the db.'
+p109
+sI26
+S'    session.connect(request, response, db=db)'
+p110
+sI27
+S'else:'
+p111
+sI28
+S"    # connect to Google BigTable (optional 'google:datastore://namespace')"
+p112
+sI29
+S"    db = DAL('google:datastore+ndb')"
+p113
+sI30
+S'    # store sessions and tickets there'
+p114
+ssg87
+S'()'
+p115
+sg89
+S'<module>'
+p116
+sa(dp117
+g66
+S'/mnt/c/Users/Andy Espejo/Documents/School/CS183/web2py/gluon/globals.py'
+p118
+sg68
+(dp119
+S'record_id'
+p120
+S'4L'
+p121
+sS'table'
+p122
+S'<Table web2py_session_cmps_183_incrowd (id, lock...me, modified_datetime, unique_key, session_data)>'
+p123
+sS'unique_key'
+p124
+S"'e8d445af-0000-468d-99ea-eed6764b6d23'"
+p125
+sS'row'
+p126
+S'undefined'
+p127
+ssg74
+I930
+sg75
+(dp128
+I928
+S'                # Select from database'
+p129
+sI929
+S'                if record_id:'
+p130
+sI930
+S'                    row = table(record_id, unique_key=unique_key)'
+p131
+sI931
+S'                    # Make sure the session data exists in the database'
+p132
+sI932
+S'                    if row:'
+p133
+sI933
+S'                        # rows[0].update_record(locked=True)'
+p134
+sI934
+S'                        # Unpickle the data'
+p135
+sI925
+S'                except (TypeError, ValueError):'
+p136
+sI926
+S'                    record_id = None'
+p137
+sI927
+S''
+ssg87
+S'(self=<Storage {}>, request=<Storage {\'_vars\': None, \'function\': \'index\', \'c...ol/CS183/web2py/applications/cmps_183_incrowd/\'}>, response=<Storage {\'body\': <cStringIO.StringO object at 0...y, session_data)>, \'view\': \'default/index.html\'}>, db=<DAL uri="sqlite://storage.sqlite">, tablename=\'web2py_session\', masterapp=\'cmps_183_incrowd\', migrate=True, separate=None, check_client=False, cookie_key=None, cookie_expires=None, compression_level=None)'
+p138
+sg89
+S'connect'
+p139
+sa(dp140
+g66
+S'/mnt/c/Users/Andy Espejo/Documents/School/CS183/web2py/gluon/packages/dal/pydal/objects.py'
+p141
+sg68
+(dp142
+S'orderby_on_limitby'
+p143
+g127
+sS').first'
+p144
+g127
+sS'builtinFalse'
+p145
+S'False'
+p146
+ssg74
+I535
+sg75
+(dp147
+I530
+S'            else:'
+p148
+sI531
+S'                record = self._db(self._id == key).select('
+p149
+sI532
+S'                    limitby=(0, 1),'
+p150
+sI533
+S'                    for_update=for_update,'
+p151
+sI534
+S'                    orderby=orderby,'
+p152
+sI535
+S'                    orderby_on_limitby=False).first()'
+p153
+sI536
+S'            if record:'
+p154
+sI537
+S'                for k, v in iteritems(kwargs):'
+p155
+sI538
+S'                    if record[k] != v:'
+p156
+sI539
+S'                        return None'
+p157
+ssg87
+S"(self=<Table web2py_session_cmps_183_incrowd (id, lock...me, modified_datetime, unique_key, session_data)>, key=4L, **kwargs={'unique_key': 'e8d445af-0000-468d-99ea-eed6764b6d23'})"
+p158
+sg89
+S'__call__'
+p159
+sa(dp160
+g66
+S'/mnt/c/Users/Andy Espejo/Documents/School/CS183/web2py/gluon/packages/dal/pydal/objects.py'
+p161
+sg68
+(dp162
+S'self.query'
+p163
+S'<Query (web2py_session_cmps_183_incrowd.id = 4)>'
+p164
+sS'adapter.select'
+p165
+S'<bound method SQLiteAdapter.select of <pydal.adapters.sqlite.SQLiteAdapter object>>'
+p166
+sS'fields'
+p167
+S'[<pydal.objects.Field object>, <pydal.objects.Field object>, <pydal.objects.Field object>, <pydal.objects.Field object>, <pydal.objects.Field object>, <pydal.objects.Field object>, <pydal.objects.Field object>]'
+p168
+sS'adapter'
+p169
+S'<pydal.adapters.sqlite.SQLiteAdapter object>'
+p170
+sS'attributes'
+p171
+S"{'for_update': False, 'limitby': (0, 1), 'orderby': None, 'orderby_on_limitby': False}"
+p172
+sS'self'
+p173
+S'<Set (web2py_session_cmps_183_incrowd.id = 4)>'
+p174
+ssg74
+I2020
+sg75
+(dp175
+I2016
+S"                                    attributes.get('left', None),"
+p176
+sI2017
+S"                                    attributes.get('orderby', None),"
+p177
+sI2018
+S"                                    attributes.get('groupby', None))"
+p178
+sI2019
+S'        fields = adapter.expand_all(fields, tablenames)'
+p179
+sI2020
+S'        return adapter.select(self.query, fields, attributes)'
+p180
+sI2021
+S''
+sI2022
+S'    def iterselect(self, *fields, **attributes):'
+p181
+sI2023
+S'        adapter = self.db._adapter'
+p182
+sI2024
+S'        tablenames = adapter.tables(self.query,'
+p183
+sI2015
+S"                                    attributes.get('join', None),"
+p184
+ssg87
+S"(self=<Set (web2py_session_cmps_183_incrowd.id = 4)>, *fields=[<pydal.objects.Field object>, <pydal.objects.Field object>, <pydal.objects.Field object>, <pydal.objects.Field object>, <pydal.objects.Field object>, <pydal.objects.Field object>, <pydal.objects.Field object>], **attributes={'for_update': False, 'limitby': (0, 1), 'orderby': None, 'orderby_on_limitby': False})"
+p185
+sg89
+S'select'
+p186
+sa(dp187
+g66
+S'/mnt/c/Users/Andy Espejo/Documents/School/CS183/web2py/gluon/packages/dal/pydal/adapters/sqlite.py'
+p188
+sg68
+(dp189
+S'fields'
+p190
+S'[<pydal.objects.Field object>, <pydal.objects.Field object>, <pydal.objects.Field object>, <pydal.objects.Field object>, <pydal.objects.Field object>, <pydal.objects.Field object>, <pydal.objects.Field object>]'
+p191
+sS'self'
+p192
+S'<pydal.adapters.sqlite.SQLiteAdapter object>'
+p193
+sS').select'
+p194
+S'<bound method SQLiteAdapter.select of <pydal.adapters.sqlite.SQLiteAdapter object>>'
+p195
+sS'attributes'
+p196
+S"{'for_update': False, 'limitby': (0, 1), 'orderby': None, 'orderby_on_limitby': False}"
+p197
+sS'global SQLiteAdapter'
+p198
+S"<class 'pydal.adapters.sqlite.SQLiteAdapter'>"
+p199
+sS'query'
+p200
+S'<Query (web2py_session_cmps_183_incrowd.id = 4)>'
+p201
+sS'builtinsuper'
+p202
+S"<type 'super'>"
+p203
+ssg74
+I123
+sg75
+(dp204
+I118
+S'        Note that the entire database, rather than one record, is locked'
+p205
+sI119
+S'        (it will be locked eventually anyway by the following UPDATE).'
+p206
+sI120
+S'        """'
+p207
+sI121
+S"        if attributes.get('for_update', False) and not 'cache' in attributes:"
+p208
+sI122
+S"            self.execute('BEGIN IMMEDIATE TRANSACTION;')"
+p209
+sI123
+S'        return super(SQLiteAdapter, self).select(query, fields, attributes)'
+p210
+sI124
+S''
+sI125
+S''
+sI126
+S'SPATIALLIBS = {'
+p211
+sI127
+S"    'Windows':'mod_spatialite.dll',"
+p212
+ssg87
+S"(self=<pydal.adapters.sqlite.SQLiteAdapter object>, query=<Query (web2py_session_cmps_183_incrowd.id = 4)>, fields=[<pydal.objects.Field object>, <pydal.objects.Field object>, <pydal.objects.Field object>, <pydal.objects.Field object>, <pydal.objects.Field object>, <pydal.objects.Field object>, <pydal.objects.Field object>], attributes={'for_update': False, 'limitby': (0, 1), 'orderby': None, 'orderby_on_limitby': False})"
+p213
+sg89
+g186
+sa(dp214
+g66
+S'/mnt/c/Users/Andy Espejo/Documents/School/CS183/web2py/gluon/packages/dal/pydal/adapters/base.py'
+p215
+sg68
+(dp216
+S'fields'
+p217
+S'[<pydal.objects.Field object>, <pydal.objects.Field object>, <pydal.objects.Field object>, <pydal.objects.Field object>, <pydal.objects.Field object>, <pydal.objects.Field object>, <pydal.objects.Field object>]'
+p218
+sS'self'
+p219
+S'<pydal.adapters.sqlite.SQLiteAdapter object>'
+p220
+sS'attributes'
+p221
+S"{'for_update': False, 'limitby': (0, 1), 'orderby': None, 'orderby_on_limitby': False}"
+p222
+sS'self._select_aux'
+p223
+S'<bound method SQLiteAdapter._select_aux of <pydal.adapters.sqlite.SQLiteAdapter object>>'
+p224
+sS'sql'
+p225
+S"'SELECT  web2py_session_cmps_183_incrowd.id, web2...ession_cmps_183_incrowd.id = 4) LIMIT 1 OFFSET 0;'"
+p226
+ssg74
+I1296
+sg75
+(dp227
+I1291
+S'            return cache_model('
+p228
+sI1292
+S'                key,'
+p229
+sI1293
+S'                lambda self=self,args=args:self._select_aux(*args),'
+p230
+sI1294
+S'                time_expire)'
+p231
+sI1295
+S'        else:'
+p232
+sI1296
+S'            return self._select_aux(sql,fields,attributes)'
+p233
+sI1297
+S''
+sI1298
+S'    def iterselect(self, query, fields, attributes):'
+p234
+sI1299
+S'        sql = self._select(query, fields, attributes)'
+p235
+sI1300
+S"        cacheable = attributes.get('cacheable', False)"
+p236
+ssg87
+S"(self=<pydal.adapters.sqlite.SQLiteAdapter object>, query=<Query (web2py_session_cmps_183_incrowd.id = 4)>, fields=[<pydal.objects.Field object>, <pydal.objects.Field object>, <pydal.objects.Field object>, <pydal.objects.Field object>, <pydal.objects.Field object>, <pydal.objects.Field object>, <pydal.objects.Field object>], attributes={'for_update': False, 'limitby': (0, 1), 'orderby': None, 'orderby_on_limitby': False})"
+p237
+sg89
+g186
+sa(dp238
+g66
+S'/mnt/c/Users/Andy Espejo/Documents/School/CS183/web2py/gluon/packages/dal/pydal/adapters/base.py'
+p239
+sg68
+(dp240
+S'self'
+p241
+S'<pydal.adapters.sqlite.SQLiteAdapter object>'
+p242
+sS'self.execute'
+p243
+S'<bound method SQLiteAdapter.execute of <pydal.adapters.sqlite.SQLiteAdapter object>>'
+p244
+sS'sql'
+p245
+S"'SELECT  web2py_session_cmps_183_incrowd.id, web2...ession_cmps_183_incrowd.id = 4) LIMIT 1 OFFSET 0;'"
+p246
+ssg74
+I1253
+sg75
+(dp247
+I1248
+S''
+sI1249
+S'    def _select_aux(self, sql, fields, attributes):'
+p248
+sI1250
+S'        args_get = attributes.get'
+p249
+sI1251
+S"        cache = args_get('cache',None)"
+p250
+sI1252
+S'        if not cache:'
+p251
+sI1253
+S'            self.execute(sql)'
+p252
+sI1254
+S'            rows = self._fetchall()'
+p253
+sI1255
+S'        else:'
+p254
+sI1256
+S'            if isinstance(cache, dict):'
+p255
+sI1257
+S"                cache_model = cache['model']"
+p256
+ssg87
+S"(self=<pydal.adapters.sqlite.SQLiteAdapter object>, sql='SELECT  web2py_session_cmps_183_incrowd.id, web2...ession_cmps_183_incrowd.id = 4) LIMIT 1 OFFSET 0;', fields=[<pydal.objects.Field object>, <pydal.objects.Field object>, <pydal.objects.Field object>, <pydal.objects.Field object>, <pydal.objects.Field object>, <pydal.objects.Field object>, <pydal.objects.Field object>], attributes={'for_update': False, 'limitby': (0, 1), 'orderby': None, 'orderby_on_limitby': False})"
+p257
+sg89
+S'_select_aux'
+p258
+sa(dp259
+g66
+S'/mnt/c/Users/Andy Espejo/Documents/School/CS183/web2py/gluon/packages/dal/pydal/adapters/base.py'
+p260
+sg68
+(dp261
+S'a'
+S"('SELECT  web2py_session_cmps_183_incrowd.id, web2...ession_cmps_183_incrowd.id = 4) LIMIT 1 OFFSET 0;',)"
+p262
+sS'self'
+p263
+S'<pydal.adapters.sqlite.SQLiteAdapter object>'
+p264
+sS'b'
+g21
+sS'self.log_execute'
+p265
+S'<bound method SQLiteAdapter.log_execute of <pydal.adapters.sqlite.SQLiteAdapter object>>'
+p266
+ssg74
+I1388
+sg75
+(dp267
+I1383
+S'        self.db._timings.append((command,time.time()-t0))'
+p268
+sI1384
+S'        del self.db._timings[:-TIMINGSSIZE]'
+p269
+sI1385
+S'        return ret'
+p270
+sI1386
+S''
+sI1387
+S'    def execute(self, *a, **b):'
+p271
+sI1388
+S'        return self.log_execute(*a, **b)'
+p272
+sI1389
+S''
+sI1390
+S'    def execute_test_query(self):'
+p273
+sI1391
+S'        return self.execute(self.test_query)'
+p274
+sI1392
+S''
+ssg87
+S"(self=<pydal.adapters.sqlite.SQLiteAdapter object>, *a=('SELECT  web2py_session_cmps_183_incrowd.id, web2...ession_cmps_183_incrowd.id = 4) LIMIT 1 OFFSET 0;',), **b={})"
+p275
+sg89
+S'execute'
+p276
+sa(dp277
+g66
+S'/mnt/c/Users/Andy Espejo/Documents/School/CS183/web2py/gluon/packages/dal/pydal/adapters/base.py'
+p278
+sg68
+(dp279
+S'a'
+S"('SELECT  web2py_session_cmps_183_incrowd.id, web2...ession_cmps_183_incrowd.id = 4) LIMIT 1 OFFSET 0;',)"
+p280
+sS'b'
+g21
+sS'self'
+p281
+S'<pydal.adapters.sqlite.SQLiteAdapter object>'
+p282
+sS'ret'
+p283
+g127
+sS'command'
+p284
+S"'SELECT  web2py_session_cmps_183_incrowd.id, web2...ession_cmps_183_incrowd.id = 4) LIMIT 1 OFFSET 0;'"
+p285
+sS'self.get_cursor'
+p286
+S'<bound method SQLiteAdapter.get_cursor of <pydal.adapters.sqlite.SQLiteAdapter object>>'
+p287
+sS').execute'
+p288
+g127
+ssg74
+I1382
+sg75
+(dp289
+I1377
+S'            command = self.filter_sql_command(command)'
+p290
+sI1378
+S'        if self.db._debug:'
+p291
+sI1379
+S"            self.db.logger.debug('SQL: %s' % command)"
+p292
+sI1380
+S'        self.db._lastsql = command'
+p293
+sI1381
+S'        t0 = time.time()'
+p294
+sI1382
+S'        ret = self.get_cursor().execute(command, *a[1:], **b)'
+p295
+sI1383
+S'        self.db._timings.append((command,time.time()-t0))'
+p296
+sI1384
+S'        del self.db._timings[:-TIMINGSSIZE]'
+p297
+sI1385
+S'        return ret'
+p298
+sI1386
+S''
+ssg87
+S"(self=<pydal.adapters.sqlite.SQLiteAdapter object>, *a=('SELECT  web2py_session_cmps_183_incrowd.id, web2...ession_cmps_183_incrowd.id = 4) LIMIT 1 OFFSET 0;',), **b={})"
+p299
+sg89
+S'log_execute'
+p300
+sasS'pyver'
+p301
+S'Python 2.7.6: /usr/bin/python (prefix: /usr)'
+p302
+sS'session'
+p303
+g61
+(S's\x1a\x00\x00\x00<div><table></table></div>'
+tRp304
+sS'etype'
+p305
+S"<class 'sqlite3.OperationalError'>"
+p306
+sS'date'
+p307
+S'Sat Dec  3 23:17:59 2016'
+p308
+sS'response'
+p309
+g61
+(S's|\x17\x00\x00<div><table><tr><td style="font-weight:bold;vertical-align:top;">body</td><td style="vertical-align:top;">:</td><td><div>&lt;cStringIO.StringO object at 0x7f421d2aded8&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cookies</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">session_id_cmps_183_incrowd</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1-2dd950a4-5ec3-4f36-bac8-708cfd5ae880<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div>/</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">delimiters</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>{{</div></td></tr><tr><td><div>}}</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">files</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">flash</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">form_label_separator</td><td style="vertical-align:top;">:</td><td><div>: </div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">formstyle</td><td style="vertical-align:top;">:</td><td><div>table3cols</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">generic_patterns</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>*</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">headers</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">X-Powered-By</td><td style="vertical-align:top;">:</td><td><div>web2py</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">menu</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">meta</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">models_to_run</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>^\\w+\\.py$</div></td></tr><tr><td><div>^default/\\w+\\.py$</div></td></tr><tr><td><div>^default/index/\\w+\\.py$</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">postprocessing</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_client</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_cookie_compression_level</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_cookie_expires</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_data_name</td><td style="vertical-align:top;">:</td><td><div>session_data_cmps_183_incrowd</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_db_table</td><td style="vertical-align:top;">:</td><td><div>&lt;Table web2py_session_cmps_183_incrowd (id, locked, client_ip, created_datetime, modified_datetime, unique_key, session_data)&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_file</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_filename</td><td style="vertical-align:top;">:</td><td><div>/mnt/c/Users/Andy Espejo/Documents/School/CS183/web2py/applications/cmps_183_incrowd/sessions/127.0.0.1-2dd950a4-5ec3-4f36-bac8-708cfd5ae880</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_hash</td><td style="vertical-align:top;">:</td><td><div>c0762cbf4baf7f9af97c051e7fcb8083</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id</td><td style="vertical-align:top;">:</td><td><div>4:e8d445af-0000-468d-99ea-eed6764b6d23</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id_name</td><td style="vertical-align:top;">:</td><td><div>session_id_cmps_183_incrowd</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_masterapp</td><td style="vertical-align:top;">:</td><td><div>cmps_183_incrowd</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_new</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_storage_type</td><td style="vertical-align:top;">:</td><td><div>db</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">status</td><td style="vertical-align:top;">:</td><td><div>200</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">view</td><td style="vertical-align:top;">:</td><td><div>default/index.html</div></td></tr></table></div>'
+tRp310
+sS'locals'
+p311
+(dp312
+S'a'
+S"('SELECT  web2py_session_cmps_183_incrowd.id, web2...ession_cmps_183_incrowd.id = 4) LIMIT 1 OFFSET 0;',)"
+p313
+sS'self'
+p314
+S'<pydal.adapters.sqlite.SQLiteAdapter object>'
+p315
+sS'b'
+g21
+sS'command'
+p316
+S"'SELECT  web2py_session_cmps_183_incrowd.id, web2...ession_cmps_183_incrowd.id = 4) LIMIT 1 OFFSET 0;'"
+p317
+sS't0'
+p318
+S'1480835879.381789'
+p319
+sssS'traceback'
+p320
+S'Traceback (most recent call last):\n  File "/mnt/c/Users/Andy Espejo/Documents/School/CS183/web2py/gluon/restricted.py", line 227, in restricted\n    exec ccode in environment\n  File "/mnt/c/Users/Andy Espejo/Documents/School/CS183/web2py/applications/cmps_183_incrowd/models/db.py", line 26, in <module>\n    session.connect(request, response, db=db)\n  File "/mnt/c/Users/Andy Espejo/Documents/School/CS183/web2py/gluon/globals.py", line 930, in connect\n    row = table(record_id, unique_key=unique_key)\n  File "/mnt/c/Users/Andy Espejo/Documents/School/CS183/web2py/gluon/packages/dal/pydal/objects.py", line 535, in __call__\n    orderby_on_limitby=False).first()\n  File "/mnt/c/Users/Andy Espejo/Documents/School/CS183/web2py/gluon/packages/dal/pydal/objects.py", line 2020, in select\n    return adapter.select(self.query, fields, attributes)\n  File "/mnt/c/Users/Andy Espejo/Documents/School/CS183/web2py/gluon/packages/dal/pydal/adapters/sqlite.py", line 123, in select\n    return super(SQLiteAdapter, self).select(query, fields, attributes)\n  File "/mnt/c/Users/Andy Espejo/Documents/School/CS183/web2py/gluon/packages/dal/pydal/adapters/base.py", line 1296, in select\n    return self._select_aux(sql,fields,attributes)\n  File "/mnt/c/Users/Andy Espejo/Documents/School/CS183/web2py/gluon/packages/dal/pydal/adapters/base.py", line 1253, in _select_aux\n    self.execute(sql)\n  File "/mnt/c/Users/Andy Espejo/Documents/School/CS183/web2py/gluon/packages/dal/pydal/adapters/base.py", line 1388, in execute\n    return self.log_execute(*a, **b)\n  File "/mnt/c/Users/Andy Espejo/Documents/School/CS183/web2py/gluon/packages/dal/pydal/adapters/base.py", line 1382, in log_execute\n    ret = self.get_cursor().execute(command, *a[1:], **b)\nOperationalError: no such table: web2py_session_cmps_183_incrowd\n'
+p321
+s.

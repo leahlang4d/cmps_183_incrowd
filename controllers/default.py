@@ -46,7 +46,7 @@ def index():
     # what you get from a db(...).select(...).
     # posts = ['banana', 'pear', 'eggplant']
      return dict(posts=db().select(orderby=~db.intern.upload), author = get_user_name_from_email,
-                favs=db().select(orderby=~db.fav.upload))
+                favs=db().select(orderby=~db.fav.upload), inProg=db().select(orderby=~db.inProg.upload))
 @auth.requires_login()
 def calender():
     # Sets today equal to  year-month-date, then separates the three values
@@ -173,6 +173,12 @@ def add_fav():
     id = request.args(0)
     db.fav.insert(title=db.intern(id).title, organization=db.intern(id).organization)
     response.flash = "Added to Favorites"
+    return True
+
+def add_inProg():
+    id = request.args(0)
+    db.inProg.insert(title=db.intern(id).title, organization=db.intern(id).organization)
+    response.flash = "Added to In Progress"
     return True
 
 

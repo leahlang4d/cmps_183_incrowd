@@ -1,9 +1,13 @@
 {{extend 'layout.html'}}
 
-<div class="post_listing center">
+<div class="post_listing">
 {{if auth.user_id:}}
 
-    <div class="post_list_header text-right">
+    <div class="post_list_header text-right"><!-- Just a link to the calender page -->
+        <a href="{{=URL('default', 'calender')}}" class="btn btn-default">
+            <i class="fa fa-calendar"></i> View Calender
+        </a>
+
         <a href="{{=URL('default', 'edit_internship')}}" class="btn btn-warning">
             <i class="fa fa-plus"></i> Add Internship
         </a>
@@ -18,7 +22,7 @@
 
 
 {{pass}}
-    
+
     <div class="post_list" >
     <h1> Upcoming Internships </h1>
     {{for p in posts:}}
@@ -32,8 +36,9 @@
             </a>
             <br>
             {{=A('Add to Favorites',_class="fa fa-star", callback=URL('default', 'add_fav', args=[p.id]))}}
-
-
+            <br>
+            {{=A('Add to In Progress',_class="fa fa-plus", callback=URL('default', 'add_inProg', args=[p.id]))}}
+            <br>
 
             {{if auth.user_id and p.uploader == auth.user.email:}}
 
@@ -57,8 +62,34 @@
             <a href="{{=URL('default', 'view_internship', args=[p.id])}}" class = "post_title">
                    <i class="fa fa-pencil-square-o" aria-hidden="true">View Internship</i>
             </a>
-            {{=A('Add to Favorites',_class="fa fa-star", callback=URL('default', 'add_fav', args=[p.id]))}}
+            {{if auth.user_id and p.uploader == auth.user.email:}}
 
+               <a href="{{=URL('default', 'edit_internship', args=[p.id])}}" class = "post_title">
+                   <i class="fa fa-pencil-square-o" aria-hidden="true">Edit Your Internship Info</i>
+               </a>
+            {{pass}}
+        </div>
+    {{pass}}
+
+    </div>
+
+</div>
+
+<div class="post_list center">
+    <!-- Here goes the in progress list -->
+    <div class="inProg_list" >
+    <h1> In Progress Internships </h1>
+    {{for p in inProg:}}
+        <div class="post text-left" >
+            <!-- Here goes the code to display an individual post. The code below is just a placeholder. -->
+            <p>{{=p.title}}</p>
+            <p>{{=p.organization}}</p>
+
+            <a href="{{=URL('default', 'view_internship', args=[p.id])}}" class = "post_title">
+                   <i class="fa fa-pencil-square-o" aria-hidden="true">View Internship</i>
+            </a>
+            {{=A('Add to Favorites',_class="fa fa-star", callback=URL('default', 'add_fav', args=[p.id]))}}
+            <br>
 
             {{if auth.user_id and p.uploader == auth.user.email:}}
 
@@ -70,7 +101,6 @@
     {{pass}}
 
     </div>
-    <div class="calender_ck">
-        <a href="{{=URL('default', 'calender')}}">Check Out Your Calender</a>
-    </div>
+
 </div>
+

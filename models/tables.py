@@ -44,6 +44,16 @@ db.define_table('fav',
                 Field('uploader', default=auth.user.email if auth.user_id else None)
                 )
 
+db.define_table('inProg',
+                Field('title'),
+                Field('organization'),
+                Field('description', 'text'),
+                Field('requirements', 'text'),
+                Field('due_date'),
+                Field('upload', 'datetime', default=datetime.datetime.utcnow()),
+                Field('uploader', default=auth.user.email if auth.user_id else None)
+                )
+
 
 db.intern.id.readable = False
 db.intern.title.requires = IS_NOT_EMPTY()

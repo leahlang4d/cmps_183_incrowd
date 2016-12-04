@@ -2,6 +2,9 @@
 .post_listing {
   margin: 10px 0px 10px 0px;
   padding: 0 0 0 0px;
+  display:inline-block;
+}
+
 }
 
 /* line 7, ../sass/_main.scss */
@@ -15,6 +18,11 @@
   padding-top: 10px;
   float: right;
 }
+
+.inProg_list {
+  padding-top: 10px;
+  float: left;
+}
 /* line 11, ../sass/_main.scss */
 .post {
   border-color: #cccccc;
@@ -26,6 +34,7 @@
   -moz-border-radius: 16px;
   -webkit-border-radius: 16px;
   border-radius: 16px;
+  width: 50px;
 }
 
 /* line 19, ../sass/_main.scss */
@@ -49,9 +58,10 @@ a.post_title div.post_title {
   border-radius: 16px;
 }
 
-a.calender_click{
-    display: inline-block
+.calender_click{
+    display: inline-block;
 }
 
-
-
+.clearDiv{
+	clear:both;
+}
