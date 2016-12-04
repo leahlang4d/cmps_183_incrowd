@@ -327,5 +327,7 @@ def call():
     supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv
     """
     return service()
-
+def main():
+    return dict(posts=db().select(orderby=~db.intern.upload), author=get_user_name_from_email,
+                favs=db().select(orderby=~db.fav.upload), inProg=db().select(orderby=~db.inProg.upload))
 

@@ -1,0 +1,31 @@
+{{extend 'layout.html'}}
+<div class="main_page">
+    <div class="main_content">
+    <h1 class="main_content">Welcome to inCrowd</h1>
+    <p class="main_content">The place where your future is safe in our hands </p>
+        </div>
+
+     {{if auth.user_id:}}
+    <div class="post_list_header text-right">
+        <a href="{{=URL('default', 'index')}}" class="btn btn-warning">
+            <i class="fa fa-plus"></i> Add Internship
+        </a>
+    </div>
+    {{else:}}
+
+    <div class="main_login text-center">
+        <br><br><br>
+
+        <a href="{{=URL('default', 'user', args=['login'])}}" class="btn btn-default"> Log In</a>
+    </div>
+
+{{pass}}
+
+</div>
+
+
+
+
+
+
+

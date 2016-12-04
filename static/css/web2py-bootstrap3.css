@@ -86,7 +86,7 @@ select.autocomplete {
     padding: 6px 12px;
 }
 #web2py-logo {
-    font-family: 'Aref Ruqaa', serif; /** here is the font**/
+    font-family: ; /** here is the font**/
     color: #c6cecc;
 }
 #web2py-logo b {

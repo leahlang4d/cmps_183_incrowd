@@ -14,9 +14,7 @@
     </div>
 
 {{else:}}
-    <div class="post_list_header text-right">
-        <a href="{{=URL('default', 'user', args=['login'])}}" class="btn btn-warning">Log In</a>
-    </div>
+    {{redirect(URL('default', 'main'))}}
 
 
 
@@ -54,7 +52,7 @@
     {{pass}}
 
     </div>
-
+    {{if auth.user_id:}}
     <div id="inFaveL" class="fav_list" >
     <h1> Starred Internships </h1>
     {{for p in favs:}}
@@ -75,6 +73,7 @@
     {{pass}}
 
     </div>
+    {{pass}}
 
 </div>
 

@@ -59,5 +59,22 @@ a.post_title div.post_title {
 .calender_click{
     display: inline-block;
 }
+.main_page{
+   height: 200px;
+    width: 400px;
+    background: #619c98;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -200px;
+}
+h1.main_content{
+    text-align: center;
+}
+p.main_content{
+    text-align: center;
+
 
 
