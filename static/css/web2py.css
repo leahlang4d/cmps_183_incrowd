@@ -64,6 +64,7 @@ audio {width:200px}
     border-top:1px #DEDEDE solid;
 }
 .header {
+    background: #0000cc;
         /* background:<fill here for header image>; */
 }
 
@@ -101,7 +102,7 @@ div.w2p_flash {
     margin:0px 0px 10px 10px;
     vertical-align:middle;
     cursor:pointer;
-    color:#fff;
+    color: #0f0aff;
     background-color:#000;
     border:2px solid #fff;
     border-radius:8px;
