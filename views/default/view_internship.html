@@ -17,6 +17,8 @@
     <p>Application due by: {{=post.due_date}}</p>
     <p>For more information please contact:  {{=post.uploader}}</p>
     <p>Uploaded on: {{=post.upload}}</p>
-    <a href="{{=URL('default', 'user', args=['login'])}}" class="btn btn-primary">Add To Working List</a>
-    <a href="{{=URL('default', 'user', args=['login'])}}" class="btn btn-warning"><i class="fa fa-star" aria-hidden="true"> Favorite</i></a>
+
+    <a href="{{=URL('default', 'add_inProg', args=[post.id])}}" class="btn btn-default"><i style="color:#4286f4" class="fa fa-plus" aria-hidden="true">Add To In Progress</i></a>
+    <a href="{{=URL('default', 'add_fav', args=[post.id])}}" class="btn btn-default"><i style="color:#4286f4" class="fa fa-star" aria-hidden="true">Favorite</i></a>
+
 </div>

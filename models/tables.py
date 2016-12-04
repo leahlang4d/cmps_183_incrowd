@@ -70,9 +70,9 @@ db.post.created_on.readable = db.post.created_on.writable = False
 db.post.updated_on.readable = db.post.updated_on.writable = False
 
 #from calender
-db.dateContent.dateDay.writable = False
-db.dateContent.dateMonth.writable = False
-db.dateContent.dateYear.writable = False
+db.dateContent.dateDay.writable = db.dateContent.dateDay.readable = False
+db.dateContent.dateMonth.writable =db.dateContent.dateMonth.readable = False
+db.dateContent.dateYear.writable =  db.dateContent.dateYear.readable = False
 
 # after defining tables, uncomment below to enable auditing
 # auth.enable_record_versioning(db)

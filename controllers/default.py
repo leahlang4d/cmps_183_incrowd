@@ -168,12 +168,112 @@ def view_internship():
 
     return dict(form=form, button_list=button_list, post=db(db.intern.id == request.args(0)).select().first())
 
+def view_internshipFav():
+    """
+    This is the page to view the internship information
+    """
+
+
+    if request.args(0) is None:
+        redirect(URL('default', 'index'))
+
+    #else:
+    q = (db.fav.id == request.args(0))
+    cl = db(q).select().first()
+
+    is_edit = (request.vars.edit == 'true')
+    form_type = 'view'
+    form = SQLFORM(db.fav, record=cl, deletable=False, readonly=not False)
+
+    button_list = []
+    if form_type == 'edit':
+        button_list.append(A('Cancel', _class='btn btn-warning',
+                             _href=URL('default', 'edit_internship', args=[cl.id])))
+    elif form_type == 'create':
+        button_list.append(A('Cancel', _class='btn btn-warning',
+                             _href=URL('default', 'index')))
+    elif form_type == 'view':
+        #button_list.append(A('Edit', _class='btn btn-warning',
+         #                    _href=URL('default', 'edit_internship', args=[cl.id], vars=dict(edit='true'))))
+        button_list.append(A('Back', _class='btn btn-primary',
+                             _href=URL('default', 'index')))
+    if form.process().accepted:
+        if form_type == 'create':
+            session.flash = T('Internship added.')
+        else:
+            session.flash = T('Internship edited.')
+        redirect(URL('default', 'index'))
+    elif form.errors:
+        session.flash = T('Please enter correct values.')
+
+    return dict(form=form, button_list=button_list, post=db(db.fav.id == request.args(0)).select().first())
+
+def view_internshipInProg():
+    """
+    This is the page to view the internship information
+    """
+
+
+    if request.args(0) is None:
+        redirect(URL('default', 'index'))
+
+    #else:
+    q = (db.inProg.id == request.args(0))
+    cl = db(q).select().first()
+
+    is_edit = (request.vars.edit == 'true')
+    form_type = 'view'
+    form = SQLFORM(db.inProg, record=cl, deletable=False, readonly=not False)
+
+    button_list = []
+    if form_type == 'edit':
+        button_list.append(A('Cancel', _class='btn btn-warning',
+                             _href=URL('default', 'edit_internship', args=[cl.id])))
+    elif form_type == 'create':
+        button_list.append(A('Cancel', _class='btn btn-warning',
+                             _href=URL('default', 'index')))
+    elif form_type == 'view':
+        #button_list.append(A('Edit', _class='btn btn-warning',
+         #                    _href=URL('default', 'edit_internship', args=[cl.id], vars=dict(edit='true'))))
+        button_list.append(A('Back', _class='btn btn-primary',
+                             _href=URL('default', 'index')))
+    if form.process().accepted:
+        if form_type == 'create':
+            session.flash = T('Internship added.')
+        else:
+            session.flash = T('Internship edited.')
+        redirect(URL('default', 'index'))
+    elif form.errors:
+        session.flash = T('Please enter correct values.')
+
+    return dict(form=form, button_list=button_list, post=db(db.inProg.id == request.args(0)).select().first())
 
 def add_fav():
     id = request.args(0)
     db.fav.insert(title=db.intern(id).title, organization=db.intern(id).organization)
     response.flash = "Added to Favorites"
+
     return True
+
+def add_favFromProg():
+    id = request.args(0)
+    db.fav.insert(title=db.inProg(id).title, organization=db.inProg(id).organization)
+    response.flash = "Added to Favorites"
+    redirect(URL('default', 'index'))
+
+
+    return True
+
+
+def add_progFromFave():
+    id = request.args(0)
+    db.inProg.insert(title=db.fav(id).title, organization=db.fav(id).organization)
+    response.flash = "Added to Favorites"
+    redirect(URL('default', 'index'))
+
+
+    return True
+
 
 def add_inProg():
     id = request.args(0)

@@ -14,7 +14,6 @@
     </div>
 
 {{else:}}
-
     <div class="post_list_header text-right">
         <a href="{{=URL('default', 'user', args=['login'])}}" class="btn btn-warning">Log In</a>
     </div>
@@ -30,22 +29,26 @@
             <!-- Here goes the code to display an individual post. The code below is just a placeholder. -->
             <p>{{=p.title}}</p>
             <p>{{=p.organization}}</p>
-
-            <a href="{{=URL('default', 'view_internship', args=[p.id])}}" class = "post_title">
-                   <i class="fa fa-pencil-square-o" aria-hidden="true">View Internship</i>
-            </a>
-            <div id="inFaveBtn">
+            <div class="btn btn-default">
+                <a href="{{=URL('default', 'view_internship', args=[p.id])}}" class = "post_title">
+                       <i style="color:#4286f4 " class="fa fa-pencil-square-o" aria-hidden="true">
+                           View Internship
+                       </i>
+                </a>
+            </div>
+            <div id="inFaveBtn" class="btn btn-default">
             {{=A('Add to Favorites',_class="fa fa-star", callback=URL('default', 'add_fav', args=[p.id]))}}
             </div>
-            <div id="inProgBtn">
+            <div id="inProgBtn" class="btn btn-default">
                 {{=A('Add to In Progress',_class="fa fa-plus", callback=URL('default', 'add_inProg', args=[p.id]))}}
             </div>
 
             {{if auth.user_id and p.uploader == auth.user.email:}}
-
-               <a href="{{=URL('default', 'edit_internship', args=[p.id])}}" class = "post_title">
-                   <i class="fa fa-pencil-square-o" aria-hidden="true">Edit Your Internship Info</i>
-               </a>
+               <div class=" btn btn-default">
+                   <a href="{{=URL('default', 'edit_internship', args=[p.id])}}" class = "post_title">
+                       <i style="color:#4286f4"  class="fa fa-pencil-square-o" aria-hidden="true">Edit Your Internship Info</i>
+                   </a>
+               </div>
             {{pass}}
         </div>
     {{pass}}
@@ -59,12 +62,13 @@
             <!-- Here goes the code to display an individual post. The code below is just a placeholder. -->
             <p>{{=p.title}}</p>
             <p>{{=p.organization}}</p>
-
-            <a href="{{=URL('default', 'view_internship', args=[p.id])}}" class = "post_title">
-                   <i class="fa fa-pencil-square-o" aria-hidden="true">View Internship</i>
+            <div class="btn btn-default">
+            <a href="{{=URL('default', 'view_internshipFav', args=[p.id])}}" class = "post_title">
+                   <i style="color:#4286f4" class="fa fa-pencil-square-o" aria-hidden="true">View Internship</i>
             </a>
+            </div>
 
-            <div id="faveDelBtn">
+            <div id="faveDelBtn" class="btn btn-default">
                 {{=A('Remove from Favorites',_class="fa fa-trash", callback=URL('default', 'del_fav', args=[p.id]))}}
             </div>
         </div>
@@ -84,10 +88,13 @@
             <p>{{=p.title}}</p>
             <p>{{=p.organization}}</p>
 
-            <a href="{{=URL('default', 'view_internship', args=[p.id])}}" class = "post_title">
-                   <i class="fa fa-pencil-square-o" aria-hidden="true">View Internship</i>
+            <div class="btn btn-default">
+            <a href="{{=URL('default', 'view_internshipInProg', args=[p.id])}}" class = "post_title">
+                   <i style="color:#4286f4" class="fa fa-pencil-square-o" aria-hidden="true">View Internship</i>
             </a>
-            <div id="inProgDelBtn">
+            </div>
+
+            <div class="btn btn-default" id="inProgDelBtn">
             {{=A('Remove from In Progress',_class="fa fa-star", callback=URL('default', 'del_inProg', args=[p.id]))}}
             </div>
         </div>
