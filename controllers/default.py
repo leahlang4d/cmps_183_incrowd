@@ -181,6 +181,15 @@ def add_inProg():
     response.flash = "Added to In Progress"
     return True
 
+def del_fav():
+    delID= request.args(0)
+    db(db.fav.id == delID).delete()
+    return True
+
+def del_inProg():
+    delID= request.args(0)
+    db(db.inProg.id == delID).delete()
+    return True
 
 def user():
     """

@@ -63,12 +63,10 @@
             <a href="{{=URL('default', 'view_internship', args=[p.id])}}" class = "post_title">
                    <i class="fa fa-pencil-square-o" aria-hidden="true">View Internship</i>
             </a>
-            {{if auth.user_id and p.uploader == auth.user.email:}}
 
-               <a href="{{=URL('default', 'edit_internship', args=[p.id])}}" class = "post_title">
-                   <i class="fa fa-pencil-square-o" aria-hidden="true">Edit Your Internship Info</i>
-               </a>
-            {{pass}}
+            <div id="faveDelBtn">
+                {{=A('Remove from Favorites',_class="fa fa-trash", callback=URL('default', 'del_fav', args=[p.id]))}}
+            </div>
         </div>
     {{pass}}
 
@@ -89,15 +87,9 @@
             <a href="{{=URL('default', 'view_internship', args=[p.id])}}" class = "post_title">
                    <i class="fa fa-pencil-square-o" aria-hidden="true">View Internship</i>
             </a>
-            {{=A('Add to Favorites',_class="fa fa-star", callback=URL('default', 'add_fav', args=[p.id]))}}
-            <br>
-
-            {{if auth.user_id and p.uploader == auth.user.email:}}
-
-               <a href="{{=URL('default', 'edit_internship', args=[p.id])}}" class = "post_title">
-                   <i class="fa fa-pencil-square-o" aria-hidden="true">Edit Your Internship Info</i>
-               </a>
-            {{pass}}
+            <div id="inProgDelBtn">
+            {{=A('Remove from In Progress',_class="fa fa-star", callback=URL('default', 'del_inProg', args=[p.id]))}}
+            </div>
         </div>
     {{pass}}
 
@@ -114,6 +106,16 @@
     $('#inFaveBtn').click(function () {
         console.log("load");
         $('#inFaveL').load("index.html #inFaveL");
+
+    });
+    $('#faveDelBtn').click(function () {
+        console.log("load");
+        $('#inFaveL').load("index.html #inFaveL");
+
+    });
+     $('#inProgDelBtn').click(function () {
+        console.log("load");
+        $('#inProgL').load("index.html #inProgL");
 
     });
 </script>
