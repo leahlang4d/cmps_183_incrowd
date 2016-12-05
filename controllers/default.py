@@ -250,14 +250,18 @@ def view_internshipInProg():
 
 def add_fav():
     id = request.args(0)
-    db.fav.insert(title=db.intern(id).title, organization=db.intern(id).organization)
+    db.fav.insert(title=db.intern(id).title, organization=db.intern(id).organization, description=db.intern(id).description,
+                requirements=db.intern(id).requirements, due_date=db.intern(id).due_date, uploader=db.intern(id).uploader)
     response.flash = "Added to Favorites"
+    redirect(URL('default', 'index'))
 
     return True
 
+
 def add_favFromProg():
     id = request.args(0)
-    db.fav.insert(title=db.inProg(id).title, organization=db.inProg(id).organization)
+    db.fav.insert(title=db.inProg(id).title, organization=db.inProg(id).organization, description=db.inProg(id).description,
+                requirements=db.inProg(id).requirements, due_date=db.inProg(id).due_date, uploader=db.inProg(id).uploader)
     response.flash = "Added to Favorites"
     redirect(URL('default', 'index'))
 
@@ -267,7 +271,8 @@ def add_favFromProg():
 
 def add_progFromFave():
     id = request.args(0)
-    db.inProg.insert(title=db.fav(id).title, organization=db.fav(id).organization)
+    db.inProg.insert(title=db.fav(id).title, organization=db.fav(id).organization, description=db.fav(id).description,
+                requirements=db.fav(id).requirements, due_date=db.fav(id).due_date, uploader=db.fav(id).uploader)
     response.flash = "Added to Favorites"
     redirect(URL('default', 'index'))
 
@@ -277,8 +282,10 @@ def add_progFromFave():
 
 def add_inProg():
     id = request.args(0)
-    db.inProg.insert(title=db.intern(id).title, organization=db.intern(id).organization)
+    db.inProg.insert(title=db.intern(id).title, organization=db.intern(id).organization, description=db.intern(id).description,
+                requirements=db.intern(id).requirements, due_date=db.intern(id).due_date, uploader=db.intern(id).uploader)
     response.flash = "Added to In Progress"
+    redirect(URL('default', 'index'))
     return True
 
 def del_fav():
