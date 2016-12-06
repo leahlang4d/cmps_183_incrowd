@@ -43,12 +43,12 @@ audio {width:200px}
 /* Sticky footer begin */
 
 .main {
-  padding:20px 0 50px 0;
+  padding:10px 0 25px 0;
 }
 
 .footer,.push {
   height:6em;
-  padding:1em 0;
+  padding:20em 0;
   clear:both;
 }
 
@@ -61,7 +61,7 @@ audio {width:200px}
 /* Sticky footer end */
 
 .footer {
-    border-top:1px #DEDEDE solid;
+    border-top:10px #DEDEDE solid;
 }
 .header {
     background: #0000cc;
@@ -302,6 +302,8 @@ li.w2p_grid_breadcrumb_elem {
    height: auto;
    min-height: 400px;
 }
+
+
 
 /* fix some IE problems */
 

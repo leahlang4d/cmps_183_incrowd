@@ -1,6 +1,7 @@
 {{extend 'layout.html'}}
 
 <div class="post_listing">
+
 {{if auth.user_id:}}
 
     <div class="post_list_header text-right"><!-- Just a link to the calender page -->
@@ -25,6 +26,7 @@
     {{for p in posts:}}
         <div class="post text-left" >
             <!-- Here goes the code to display an individual post. The code below is just a placeholder. -->
+            <style> p {color: black}</style>
             <p>{{=p.title}}</p>
             <p>{{=p.organization}}</p>
             <div class="btn btn-default">
